@@ -1,0 +1,5 @@
+USE ROLE sysadmin;
+
+CREATE DATABASE IF NOT EXISTS opensky;
+
+CREATE SCHEMA IF NOT EXISTS opensky.staging;
