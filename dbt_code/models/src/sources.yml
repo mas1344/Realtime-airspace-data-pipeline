@@ -1,0 +1,6 @@
+sources:
+    - name: opensky_staging
+      schema: staging
+      tables:
+        - name: stg_opensky
+          identifier: OPENSKY_DATA
