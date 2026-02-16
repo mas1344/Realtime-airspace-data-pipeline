@@ -1,0 +1,30 @@
+USE ROLE SYSADMIN;
+
+USE DATABASE opensky;
+
+CREATE SCHEMA IF NOT EXISTS marts;
+
+SHOW SCHEMAS IN DATABASE opensky;
+
+USE ROLE securityadmin;
+
+
+GRANT USAGE, 
+CREATE TABLE, 
+CREATE VIEW ON SCHEMA opensky.marts TO ROLE opensky_dbt_role;
+
+GRANT SELECT,
+INSERT,
+UPDATE,
+DELETE ON ALL TABLES IN SCHEMA opensky.marts TO ROLE opensky_dbt_role;
+
+GRANT SELECT ON ALL VIEWS IN SCHEMA opensky.marts TO ROLE opensky_dbt_role;
+
+GRANT SELECT,
+INSERT,
+UPDATE,
+DELETE ON FUTURE TABLES IN SCHEMA opensky.marts TO ROLE opensky_dbt_role;
+
+GRANT SELECT ON FUTURE VIEWS IN SCHEMA opensky.marts TO ROLE opensky_dbt_role;
+
+USE ROLE opensky_dbt_role;

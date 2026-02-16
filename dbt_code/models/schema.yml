@@ -1,0 +1,40 @@
+version: 2
+
+models:
+
+  - name: fct_positions
+    description: "Fact table containing aircraft position observations"
+    columns:
+      - name: position_id
+        description: "Primary key for the fact table"
+        tests:
+          - unique
+          - not_null
+
+      - name: icao24
+        description: "Foreign key to dim_aircraft"
+        tests:
+          - not_null
+
+      - name: time_id
+        description: "Foreign key to dim_time"
+        tests:
+          - not_null
+
+  - name: dim_aircraft
+    description: "Aircraft dimension table"
+    columns:
+      - name: icao24
+        description: "Primary key for aircraft dimension"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_time
+    description: "Time dimension table"
+    columns:
+      - name: time_id
+        description: "Primary key for time dimension"
+        tests:
+          - unique
+          - not_null
