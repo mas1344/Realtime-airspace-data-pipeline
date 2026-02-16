@@ -28,3 +28,5 @@ DELETE ON FUTURE TABLES IN SCHEMA opensky.marts TO ROLE opensky_dbt_role;
 GRANT SELECT ON FUTURE VIEWS IN SCHEMA opensky.marts TO ROLE opensky_dbt_role;
 
 USE ROLE opensky_dbt_role;
+
+SHOW GRANTS ON SCHEMA opensky.marts;
