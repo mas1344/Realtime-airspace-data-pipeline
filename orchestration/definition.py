@@ -63,7 +63,8 @@ job_dbt = dg.define_asset_job(
 
 schedule_dlt = dg.ScheduleDefinition(
     job = job_dlt,
-    cron_schedule="15 13 * * *"
+    cron_schedule="*/5 * * * *",
+    execution_timezone="UTC"
 )
 
 @dg.asset_sensor(
