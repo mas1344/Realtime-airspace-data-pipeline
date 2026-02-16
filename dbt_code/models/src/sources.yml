@@ -4,3 +4,6 @@ sources:
       tables:
         - name: stg_opensky
           identifier: OPENSKY_DATA
+          meta:
+            dagster:
+              asset_key: ['dlt_opensky_data_source_opensky_data_resource']

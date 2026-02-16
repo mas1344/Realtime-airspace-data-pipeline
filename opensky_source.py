@@ -1,25 +1,36 @@
-import requests
-import dlt
+from datetime import datetime, timezone
+import dlt, requests
 
-def opensky_data():
+@dlt.resource
+def opensky_data_resource():
     url = "https://opensky-network.org/api/states/all"
-    response = requests.get(url)
-    response.raise_for_status()
-    data = response.json()
+    resp = requests.get(url, timeout=15, headers={"Cache-Control":"no-cache"})
+    resp.raise_for_status()
+    data = resp.json()
+    now_ts = int(datetime.now(timezone.utc).timestamp())
+    for state in data.get("states", []):
+        time_pos = state[3] or 0
+        last_contact = state[4] or time_pos
+        on_ground = state[8]
+        # filtrera: inte på marken och senaste kontakt inom 5 minuter (300s)
+        if on_ground is False and (last_contact >= now_ts - 300):
+            yield {
+                "icao24": state[0],
+                "callsign": state[1],
+                "origin_country": state[2],
+                "position_time": time_pos,
+                "last_contact": last_contact,
+                "longitude": state[5],
+                "latitude": state[6],
+                "baro_altitude": state[7],
+                "on_ground": on_ground,
+                "velocity": state[9],
+                "heading": state[10],
+                "vertical_rate": state[11],
+                "geo_altitude": state[13],
+                "ingested_at": now_ts
+            }
 
-    for state in data["states"]:
-        yield {
-            "icao24": state[0],
-            "callsign": state[1],
-            "origin_country": state[2],
-            "time_position": state[3],
-            "last_contact": state[4],
-            "longitude": state[5],
-            "latitude": state[6],
-            "baro_altitude": state[7],
-            "on_ground": state[8],
-            "velocity": state[9],
-            "heading": state[10],
-            "vertical_rate": state[11],
-            "geo_altitude": state[13],
-        }
+@dlt.source
+def opensky_data_source():
+    return opensky_data_resource()

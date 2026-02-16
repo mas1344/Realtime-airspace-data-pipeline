@@ -211,3 +211,97 @@ __marimo__/
 
 setup_user_dlt.sql
 setup_user_dbt.sql
+
+# Dagster local run storage
+*.db
+*.db-shm
+*.db-wal
+dagster_home/
+.dagster/
+
+# Dagster local storage
+.dagster/
+dagster_home/
+dagster/
+dagster_logs/
+logs/
+storage/
+compute_logs/
+event_logs/
+instance/
+*.db
+*.db-shm
+*.db-wal
+
+
+# PYTHON
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite
+*.log
+*.tmp
+*.cache
+.env
+.venv/
+venv/
+
+
+# DAGSTER
+
+.dagster/
+dagster_home/
+dagster/
+dagster_logs/
+logs/
+storage/
+compute_logs/
+event_logs/
+instance/
+*.db
+*.db-shm
+*.db-wal
+
+
+# DBT
+
+dbt_packages/
+dbt_modules/
+target/
+logs/
+manifest.json
+run_results.json
+profiles.yml
+
+
+# VS CODE
+
+.vscode/
+
+# Dagster
+.dagster/
+dagster_home/
+*.db
+*.db-shm
+*.db-wal
+
+# dbt
+target/
+dbt_packages/
+dbt_modules/
+run_results.json
+manifest.json
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+
+# Lokala konfigfiler
+opensky.json
+profiles.yml

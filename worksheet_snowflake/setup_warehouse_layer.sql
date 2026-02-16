@@ -4,6 +4,8 @@ USE DATABASE opensky;
 
 CREATE SCHEMA IF NOT EXISTS warehouse;
 
+SHOW SCHEMAS IN DATABASE opensky;
+
 USE ROLE securityadmin;
 
 GRANT ROLE opensky_dlt_role TO ROLE opensky_dbt_role;
@@ -28,7 +30,17 @@ DELETE ON FUTURE TABLES IN SCHEMA opensky.warehouse TO ROLE opensky_dbt_role;
 
 GRANT SELECT ON FUTURE VIEWS IN SCHEMA opensky.warehouse TO ROLE opensky_dbt_role;
 
+GRANT ROLE opensky_reader_role TO ROLE opensky_dbt_role;
+
+
+
+
+
+
 USE ROLE opensky_dbt_role;
 
 USE WAREHOUSE compute_wh;
+
 SELECT * FROM opensky.staging.opensky_data LIMIT 10;
+
+SHOW GRANTS ON SCHEMA opensky.warehouse;
