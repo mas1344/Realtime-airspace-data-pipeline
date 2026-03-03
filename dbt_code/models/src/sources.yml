@@ -3,7 +3,7 @@ sources:
       schema: staging
       tables:
         - name: stg_opensky
-          identifier: OPENSKY_DATA
+          identifier: OPENSKY_DATA_RESOURCE
           meta:
             dagster:
               asset_key: ['dlt_opensky_data_source_opensky_data_resource']

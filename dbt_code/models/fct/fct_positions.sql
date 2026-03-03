@@ -9,5 +9,6 @@ select
     heading,
     vertical_rate,
     on_ground,
+    position_time,
     last_contact
 from {{ ref('stg_opensky_positions') }}

@@ -5,7 +5,7 @@ with raw as (
         trim(callsign) as callsign,
         origin_country,
 
-        to_timestamp(time_position) as time_position,
+        to_timestamp(time_position) as position_time,
         to_timestamp(last_contact) as last_contact,
 
         cast(longitude as float) as longitude,
